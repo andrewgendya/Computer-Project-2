@@ -10,7 +10,11 @@ def get_escape_time(c: complex, max_iterations: int) -> int | None:
             return i # therefore returns the i value, which is the number of iterations
     return None # returns none for complex numbers that don't exceed 2 after maximum iterations
 
-
+# print(get_escape_time(2+1j, 5))
+# print(get_escape_time(1+1j, 10))
+# print(get_escape_time(0.5+0.5j, 3))
+# print(get_escape_time(0.5+0.5j, 4))
+# print(get_escape_time(0.38+0.25j, 100))
 
 
 
