@@ -4,7 +4,7 @@ def get_escape_time(c: complex, max_iterations: int) -> int | None:
     the number of iterations, which is i. returns None if never exceeds 2 after iterating
     the maximum number of times"""
     z = 0 + 0j #notes z is a complex number
-    for i in range(max_iterations): #looping through max times
+    for i in range(max_iterations+1): #looping through max times
         z = z*z + c # calculation for mandelbrot set
         if abs(z) > 2: # if the z value is greater than two, then set will go to infinity
             return i # therefore returns the i value, which is the number of iterations
@@ -12,9 +12,13 @@ def get_escape_time(c: complex, max_iterations: int) -> int | None:
 
 # print(get_escape_time(2+1j, 5))
 # print(get_escape_time(1+1j, 10))
-# print(get_escape_time(0.5+0.5j, 3))
+# print(get_escape_time(0.5+0.5j, 2))
 # print(get_escape_time(0.5+0.5j, 4))
 # print(get_escape_time(0.38+0.25j, 100))
+
+
+
+
 
 
 
