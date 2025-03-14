@@ -38,13 +38,13 @@ def get_julia_color_arr(c_arr: np.ndarray, c: complex, max_iterations: int) -> n
     """
     Computes julia color array for grid of complex numbers
 
-    Parameters
+    Parameters:
     ----------
     c_arr : np.ndarray -> 2D numpy array of complex numbers
     c : complex number -> Julia set parameter
     max_iterations : int -> Max number of iterations
 
-    Returns
+    Returns:
     -------
     np.ndarray -> 2D numpy array of julia color arrays
     """
