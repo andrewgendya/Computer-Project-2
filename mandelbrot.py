@@ -61,6 +61,20 @@ def get_julia_color_arr(c_arr: np.ndarray, c: complex, max_iterations: int) -> n
     color_arr = (max_iterations - escape_time + 1) / (max_iterations + 1) # changes escape times to grey scale
     return color_arr
 
+def get_complex_grid(top_left: complex, bottom_right: complex, step: float) -> np.ndarray:
+    """
+    Generates grid of complex numbers for mandelbrot and julia set computations
+
+    Parameters:
+    ----------
+    top_left : complex -> 2D numpy array of complex numbers for top left corner
+    bottom_right : complex -> 2D numpy array of complex numbers for bottom right corner
+    step : float -> Step size for mandelbrot computation
+
+    Returns:
+    -------
+    np.ndarray -> 2D numpy array of complex numbers representing the grid
+    """
 
 
 
