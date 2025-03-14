@@ -40,13 +40,13 @@ def get_julia_color_arr(c_arr: np.ndarray, c: complex, max_iterations: int) -> n
 
     Parameters:
     ----------
-    c_arr : np.ndarray -> 2D numpy array of complex numbers
+    c_arr : np.ndarray -> 2D array of complex numbers
     c : complex number -> Julia set parameter
     max_iterations : int -> Max number of iterations
 
     Returns:
     -------
-    np.ndarray -> 2D numpy array of julia color arrays
+    np.ndarray -> 2D array of julia color arrays
     """
     z = np.array(c_arr, dtype=np.complex128)
     escape_time = np.full(c_arr.shape, max_iterations + 1, dtype=np.int32)
