@@ -23,6 +23,10 @@ def get_escape_time_color_arr(
     c_arr: np.ndarray,
     max_iterations: int
 ) -> np.ndarray:
+    """This function allows for the coloring of the Mendalbrot set.
+    Thus the calculation for the actual Mendalbrot set can be given pixel declartions.
+    The zeros and ones in the calculation are given a numpy color
+    it goes through the entire equation until its fully printed."""
     z= np.zeros_like(c_arr, dtype=np.complex128)
     escape_time =np.full(c_arr.shape, max_iterations+1, dtype=np.int32)
     mask=np.ones(c_arr.shape, dtype=np.bool)
