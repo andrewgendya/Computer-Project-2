@@ -42,13 +42,13 @@ def get_complex_grid(top_left: complex, bottom_right: complex, step: float) -> n
     real_part = np.arange(top_left.real, bottom_right.real, step)
     imaginary_part = np.arange(top_left.imag, bottom_right.imag, step*-1) #taking negative step to decrease
 
-    new_grid = np.zeros((len(imaginary_part), len(real_part)), dtype=complex) #creates grid of zeros
+    created_grid = np.zeros((len(imaginary_part), len(real_part)), dtype=complex) #creates grid of zeros
 
     for i in range(len(imaginary_part)):
         for j in range(len(real_part)):
-            new_grid[i, j] = real_part[j] + 1j * imaginary_part[i] #finds complex values for corresponding position in grid
+            created_grid[i, j] = real_part[j] + 1j * imaginary_part[i] #finds complex values for corresponding position in grid
 
-    return new_grid
+    return created_grid
 
 
 
