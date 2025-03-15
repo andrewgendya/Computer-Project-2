@@ -6,6 +6,7 @@ def get_escape_time(c: complex, max_iterations: int) -> int | None:
     and applies mandelbrot calculation to it. if calculated z value is greater than 2, then returns
     the number of iterations, which is i. returns None if never exceeds 2 after iterating
     the maximum number of times"""
+
     z = 0 + 0j #notes z is a complex number
     for i in range(max_iterations+1): #looping through max times
         z = z*z + c # calculation for mandelbrot set
@@ -34,7 +35,20 @@ def get_escape_time_color_arr(
     color_arr = (max_iterations-escape_time+1)/(max_iterations+1)
     return color_arr
 
+def get_complex_grid(top_left: complex, bottom_right: complex, step: float) -> np.ndarray:
+    """creates a 2D grid with evenly spaced lines. creates array of zeros and begins finding
+    complex values for the grid."""
 
+    real_part = np.arange(top_left.real, bottom_right.real, step)
+    imaginary_part = np.arange(top_left.imag, bottom_right.imag, step*-1) #taking negative step to decrease
+
+    new_grid = np.zeros((len(imaginary_part), len(real_part)), dtype=complex) #creates grid of zeros
+
+    for i in range(len(imaginary_part)):
+        for j in range(len(real_part)):
+            new_grid[i, j] = real_part[j] + 1j * imaginary_part[i] #finds complex values for corresponding position in grid
+
+    return new_grid
 
 
 
