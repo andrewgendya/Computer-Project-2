@@ -6,7 +6,6 @@ def get_escape_time(c: complex, max_iterations: int) -> int | None:
     and applies mandelbrot calculation to it. if calculated z value is greater than 2, then returns
     the number of iterations, which is i. returns None if never exceeds 2 after iterating
     the maximum number of times"""
-
     z = 0 + 0j #notes z is a complex number
     for i in range(max_iterations+1): #looping through max times
         z = z*z + c # calculation for mandelbrot set
@@ -35,20 +34,47 @@ def get_escape_time_color_arr(
     color_arr = (max_iterations-escape_time+1)/(max_iterations+1)
     return color_arr
 
+def get_julia_color_arr(c_arr: np.ndarray, c: complex, max_iterations: int) -> np.ndarray:
+    """
+    Computes julia color array for grid of complex numbers
+
+    Parameters:
+    ----------
+    c_arr : np.ndarray -> 2D array of complex numbers
+    c : complex number -> Julia set parameter
+    max_iterations : int -> Max number of iterations
+
+    Returns:
+    -------
+    np.ndarray -> 2D array of julia color arrays
+    """
+    z = np.array(c_arr, dtype=np.complex128)
+    escape_time = np.full(c_arr.shape, max_iterations + 1, dtype=np.int32)
+    mask = np.ones(c_arr.shape, dtype=np.bool) # ensure proper boolean array
+
+    for i in range(1, max_iterations + 1):
+        z[mask] = z[mask] ** 2 + c # julia iteration
+        escape=np.abs(z) > max(abs(c), 2) # escape condition
+        escape_time[mask * escape] = i # store escape time
+        mask = mask * (~escape) # update mask
+
+    color_arr = (max_iterations - escape_time + 1) / (max_iterations + 1) # changes escape times to grey scale
+    return color_arr
+
 def get_complex_grid(top_left: complex, bottom_right: complex, step: float) -> np.ndarray:
-    """creates a 2D grid with evenly spaced lines. creates array of zeros and begins finding
-    complex values for the grid."""
+    """
+    Generates grid of complex numbers for mandelbrot and julia set computations
 
-    real_part = np.arange(top_left.real, bottom_right.real, step)
-    imaginary_part = np.arange(top_left.imag, bottom_right.imag, step*-1) #taking negative step to decrease
+    Parameters:
+    ----------
+    top_left : complex -> 2D numpy array of complex numbers for top left corner
+    bottom_right : complex -> 2D numpy array of complex numbers for bottom right corner
+    step : float -> Step size for mandelbrot computation
 
-    created_grid = np.zeros((len(imaginary_part), len(real_part)), dtype=complex) #creates grid of zeros
-
-    for i in range(len(imaginary_part)):
-        for j in range(len(real_part)):
-            created_grid[i, j] = real_part[j] + 1j * imaginary_part[i] #finds complex values for corresponding position in grid
-
-    return created_grid
+    Returns:
+    -------
+    np.ndarray -> 2D numpy array of complex numbers representing the grid
+    """
 
 
 
