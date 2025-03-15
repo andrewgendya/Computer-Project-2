@@ -62,19 +62,23 @@ def get_julia_color_arr(c_arr: np.ndarray, c: complex, max_iterations: int) -> n
     return color_arr
 
 def get_complex_grid(top_left: complex, bottom_right: complex, step: float) -> np.ndarray:
-    """
-    Generates grid of complex numbers for mandelbrot and julia set computations
+    """creates a 2D grid with evenly spaced lines. creates array of zeros and begins finding
+    complex values for the grid.
 
-    Parameters:
-    ----------
     top_left : complex -> 2D numpy array of complex numbers for top left corner
     bottom_right : complex -> 2D numpy array of complex numbers for bottom right corner
-    step : float -> Step size for mandelbrot computation
+    step : float -> Step size for mandelbrot computation"""
 
-    Returns:
-    -------
-    np.ndarray -> 2D numpy array of complex numbers representing the grid
-    """
+    real_part = np.arange(top_left.real, bottom_right.real, step)
+    imaginary_part = np.arange(top_left.imag, bottom_right.imag, step * -1)  # taking negative step to decrease
+
+    created_grid = np.zeros((len(imaginary_part), len(real_part)), dtype=complex)  # creates grid of zeros
+
+    for i in range(len(imaginary_part)):
+        for j in range(len(real_part)):
+            created_grid[i, j] = real_part[j] + 1j * imaginary_part[i]  # finds complex values for corresponding position in grid
+
+    return created_grid
 
 
 
